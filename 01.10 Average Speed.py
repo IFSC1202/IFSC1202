@@ -1,0 +1,7 @@
+minutes= int(input("Enter minutes: "))
+seconds=int(input("Enter seconds: "))
+kilometers= int(input(" Enter lenth of race in kilometers: "))
+miles= (kilometers/1.61)
+hours= (minutes/60) + (seconds/3600)
+total= (miles/hours)
+print(total)

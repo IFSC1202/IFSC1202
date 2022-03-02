@@ -1,0 +1,5 @@
+p= int(input("Enter a number: "))
+ones= p%10
+tens= p//10
+q= (ones*10)+ tens
+print("Swapped Number:{}".format(q))
