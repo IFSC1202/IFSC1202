@@ -1,17 +1,14 @@
-def FahrToCel(Fvalue):
-    Fvalue = (F-32)*5/9
-inputfilename = "Ftemps.txt"
-outputfilename  = "Ctemps.txt"
-recordcount = 0
-inputfile = open(inputfilename,'r')
-outputfile = open(outputfilename,'w')
-ftemp = inputfile.readline()
-while ftemp !='':
-    ctemp = FahrToCel(float(ftemp))
-    outputfile.write(str(round(ctemp,1)) + "/n")
-    recordcount += 1
-    ftemp = inputfile.readline()
-inputfile.close() 
-outputfile.close()   
-print("{}records written".format(recordcount))
+def FahrToCel(fahr):
+    cel = (fahr - 32) * 5/9
+    return cel
 
+recordCounter = 0
+inputfile = open("06.03 FTemps.txt","r")
+outputfile = open("06.03 CTemps.txt","w")
+for line in inputfile.readlines():
+    temp = float(line.strip())
+    celsius = FahrToCel(temp)
+    outputfile.write(f"{celsius:.1f}\n")
+    recordCounter += 1
+
+print(recordCounter, "records written")
