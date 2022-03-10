@@ -1,42 +1,35 @@
 def ProperCase(s):
-    return s[0:1].upper() + s[1:].lower()
-
+    str = ''
+    str += s[0].upper()
+    for i in range(1, len(s)):
+        str += s[i].lower()
+    s = str
+    return s
 def RemoveNewLine(s):
-    return s.replace("\n","") 
-
+    return s.strip('\n')
 def Trim(s):
-    return s.strip(" ")  
-
+    return s.strip()
 def FirstName(s):
-    firstnameindex=s.find(" ")    
-    firstname=s[:firstnameindex] 
-    firstname=ProperCase(firstname)
-    return firstname
-
+    i = s.find(' ')
+    return ProperCase(s[0: i])
 def LastName(s):
-    lastnameindex=s.rfind(" ") +1
-    lastname=s[lastnameindex:]   
-    lastname=ProperCase(lastname)
-    return lastname
-
+    i = s.rfind(' ')
+    return ProperCase(s[i+1 :])
 def MiddleName(s):
-    firstnameindex= s.find(" ") 
-    lastnameindex= s.rfind(" ") + 1
-    middlename= s[firstnameindex:lastnameindex]
-    middlename= Trim(middlename)
-    middlename= ProperCase(middlename)
+    first = s.find(' ')
+    last = s.rfind(' ')
+    if last - first == 0:
+        return ""
+    elif last - first == 2:
+        return ProperCase(Trim(s[first+1:last])) + "."
+    else:
+        return ProperCase(Trim(s[first+1:last]))
 
-    if len(middlename) == 1:
-     middlename += "."
-    return middlename
+f = open("07.11 Names.txt", "r")
+print("%-10s %-10s %-10s" %("First", "Middle", "Last"))
+print("%-10s %-10s %-10s" %("----------", "----------", "----------"))
 
-print("{:10s} {:10s} {:10s}".format("First","Middle","Last"))
-print("{:10s} {:10s} {:10s}".format("-"*10,"-"*10,"-"*10))
-
-inputfile= open("names.txt",'r') 
-fullname= Trim(RemoveNewLine(inputfile.readline()))
-
-while fullname != "":
-    print("{:10s} {:10s} {:10s}".format(FirstName(fullname),MiddleName(fullname),LastName(fullname)))
-    fullname= Trim(RemoveNewLine(inputfile.readline()))
-
+for x in f:
+    s = Trim(x)
+    s = RemoveNewLine(s)
+    print("%-10s %-10s %-10s" %(FirstName(s), MiddleName(s), LastName(s)))
