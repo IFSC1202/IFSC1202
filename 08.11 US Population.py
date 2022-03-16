@@ -1,14 +1,16 @@
-population =[]
-inputfilename = " 08.11 USPopulation.txt"
+population = []
+inputfilename = "08.11 USPopulation.txt"
 inputfile = open(inputfilename,'r')
 line = inputfile.readline()
-while line != ' ':
+while line != '':
  number = int(line)
+
  number = number * 1000
+
  population.append(number)
  line = inputfile.readline()
 inputfile.close()
-print("Year  Population  Change Percent Change".format())
+print("Year  Population  Change   Percent Change".format())
 print("{:4d} {:9d}  N/A   N/A".format(1950,(population[0])))
 sumdiff = 0
 maxdiff = population[1] - population[0]
